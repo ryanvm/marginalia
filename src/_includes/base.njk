@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="{{ site.language }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+
+  <link rel="stylesheet" href="/style.css?v={{ cssHash }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/feed.xml">
+  <link rel="canonical" href="{{ page.url | absolute }}">
+
+  <meta name="description" content="{{ description or site.description }}">
+  <meta property="og:type" content="{% if layout == 'post.njk' %}article{% else %}website{% endif %}">
+  <meta property="og:title" content="{{ title or site.title }}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:url" content="{{ page.url | absolute }}">
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta name="twitter:card" content="summary">
+
+  {%- if styles %}
+  <style>{{ styles | safe }}</style>
+  {%- endif %}
+</head>
+<body>
+  <main>
+    <header>
+      <a href="/" class="author">{{ site.title }}</a>
+      <nav class="socials">
+        <a href="/musings/">Musings</a>
+        <a href="/about/">About</a>
+        <a href="/projects/">Projects</a>
+        <a href="/feed.xml">RSS</a>
+        {%- for social in site.socials %}
+        <a href="{{ social.url }}" rel="me">{{ social.name }}</a>
+        {%- endfor %}
+      </nav>
+    </header>
+
+    {{ content | safe }}
+  </main>
+</body>
+</html>

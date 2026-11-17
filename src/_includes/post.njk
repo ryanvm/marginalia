@@ -1,0 +1,10 @@
+---
+layout: base.njk
+---
+<article>
+  <h1>{{ title }}</h1>
+  <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time>
+  {% if draft %}<p class="draft-banner">Draft — not published.</p>{% endif %}
+
+  {{ content | safe }}
+</article>
